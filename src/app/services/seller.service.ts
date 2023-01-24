@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { login, signUp } from '../data-type';
-import { EventEmitter } from 'stream';
+import { EventEmitter } from '@angular/core';
 
 type NewType = boolean;
 
@@ -12,6 +12,7 @@ type NewType = boolean;
 })
 export class SellerService {
   isSellerLoggedIn = new BehaviorSubject<boolean>(false);
+  isLoggingError = new EventEmitter<boolean>(false);
   seller_url = "http://localhost:3000/seller";
 
   constructor(private _http: HttpClient, private router: Router) { }
@@ -23,15 +24,17 @@ export class SellerService {
       this.router.navigate(['seller-home']);
       console.warn("result", result);
     })
-
     return false;
   }
+
+
   reloadSeller() {
     if (localStorage.getItem('seller')) {
       this.isSellerLoggedIn.next(true);
       this.router.navigate(['seller-home'])
     }
   }
+
   userLogin(data: login) {
     console.warn(data);
     this._http.get(`http://localhost:3000/seller?email=${data.email}&password=${data.password}`, { observe: 'response' }).subscribe((result: any) => {
@@ -42,7 +45,8 @@ export class SellerService {
         this.router.navigate(['seller-home']);
       } else {
         console.warn("Login failed");
-      }
+        this.isLoggingError.emit(true);
+      } 
     })
   }
 }

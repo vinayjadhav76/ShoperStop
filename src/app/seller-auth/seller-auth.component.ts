@@ -10,7 +10,7 @@ import { login, signUp } from '../data-type';
 })
 export class SellerAuthComponent implements OnInit {
   toggleLogin = false;
-
+  authError:string = '';
   constructor(private sellerAuth: SellerService, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,7 +24,13 @@ export class SellerAuthComponent implements OnInit {
 
   login(data: login) {
     // console.warn(data);
+    this.authError="";
    this.sellerAuth.userLogin(data)
+   this.sellerAuth.isLoggingError.subscribe((err)=>{
+if(err){
+this.authError = "Email Or Password Is Incorrect"
+}
+   })
   
   }
 
