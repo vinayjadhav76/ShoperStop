@@ -13,6 +13,7 @@ type NewType = boolean;
 export class SellerService {
   isSellerLoggedIn = new BehaviorSubject<boolean>(false);
   isLoggingError = new EventEmitter<boolean>(false);
+  isSignInError = new EventEmitter<boolean>(false);
   seller_url = "http://localhost:3000/seller";
 
   constructor(private _http: HttpClient, private router: Router) { }

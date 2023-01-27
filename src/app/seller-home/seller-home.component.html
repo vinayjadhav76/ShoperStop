@@ -1,2 +1,28 @@
-<p>seller-home works!</p>
-<!-- <button type="button" class="btn btn-outline-primary" routerLink="seller-auth">Sign Out</button> -->
+<div class="container">
+    <table class="table table-striped mt-5 ">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Color</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of prodList">
+            <th scope="row">{{product.id}}</th>
+            <th scope="row"><img class="prod-image" src="{{product.image}}" alt=""></th>
+            <th scope="row">{{product.name}}</th>
+            <th scope="row">{{product.price}}</th>
+            <th scope="row">{{product.category}}</th>
+            <th scope="row">{{product.color}}</th>
+            <th scope="row">{{product.desc}}</th>
+            <th scope="row"><button class="btn btn-success" (click)="deleteProd(product.id)">Delete</button></th>
+          </tr>      
+        </tbody>
+      </table>
+</div>
