@@ -21,7 +21,10 @@
             <th scope="row">{{product.category}}</th>
             <th scope="row">{{product.color}}</th>
             <th scope="row">{{product.desc}}</th>
-            <th scope="row"><button class="btn btn-success" (click)="deleteProd(product.id)">Delete</button></th>
+            <th scope="row">
+              <button class="btn btn-success" (click)="deleteProd(product.id)">Delete</button>
+              <button class="btn btn-success mx-2" routerLink="/seller-update-product/{{product.id}}">Update</button>
+            </th>
           </tr>      
         </tbody>
       </table>

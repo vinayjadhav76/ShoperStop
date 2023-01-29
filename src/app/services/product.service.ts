@@ -22,4 +22,8 @@ export class ProductService {
 return this.http.delete(this.prod_url + '/' + id)
 
   }
+
+  getProduct(id:string){
+    return this.http.get(this.prod_url + '/' + id)
+  }
 }
