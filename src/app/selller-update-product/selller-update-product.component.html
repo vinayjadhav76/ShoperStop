@@ -1,0 +1,36 @@
+<div class="container d-flex justify-content-center">
+    <div class="card col-md-5 justify-content-center align-items-center p-5 m-5 ">
+        <h1 class="addprodheading">UPDATE PRODUCT</h1>
+
+        <form #addProduct="ngForm" (ngSubmit)="updateProd(addProduct.value)">
+            <p class="text-success">{{updateMessage}}</p>
+            <div *ngIf="alert" class="alert alert-success" role="alert">
+                <strong>Success!</strong>Your Data Updated Successfuly
+                <button (click)="closeAlert()" class="close" data-dismiss="alert" type="button" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Enter Product Name" ngModel="{{productData?.name}}" name="name">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Enter Product Price" ngModel="{{productData?.price}}" name="price">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Enter Product Category" ngModel="{{productData?.category}}" name="category">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Enter Product Color" ngModel="{{productData?.color}}" name="color">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" type="text" placeholder="Enter Product Description" ngModel="{{productData?.desc}}" name="desc"></textarea >
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Enter Product Image URL" ngModel="{{productData?.image}}" name="image">
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-success" >Update Product</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -14,12 +14,23 @@ export class ProductService {
     return this.http.post(this.prod_url, data)
   }
 
-  listProduct(){
+  listProduct() {
     return this.http.get(this.prod_url)
   }
 
-  deleteProduct(id:number){
-return this.http.delete(this.prod_url + '/' + id)
+  deleteProduct(id: number) {
+    return this.http.delete(this.prod_url + '/' + id)
+  }
 
+  getProduct(id:any){
+    return this.http.get(this.prod_url+ '/' + id)
+  }
+
+  updateProduct(product:prod){
+return this.http.put(`${this.prod_url}/${product.id}` ,product)
+  }
+
+  popularProduct(){
+    return this.http.get("http://localhost:3000/products?_limit=3")
   }
 }

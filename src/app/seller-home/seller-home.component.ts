@@ -7,20 +7,28 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./seller-home.component.scss']
 })
 export class SellerHomeComponent implements OnInit {
-prodList:any=[];
-  constructor( private prodservice:ProductService ) { }
+  prodList: any = [];
+  constructor(private prodservice: ProductService) { }
 
   ngOnInit(): void {
-    this.prodservice.listProduct().subscribe((res)=>{
+    this.prodservice.listProduct().subscribe((res) => {
       // console.warn(res);      
       this.prodList = res;
     })
   }
-  deleteProd(id:number){
-// console.warn(id);
-this.prodservice.deleteProduct(id).subscribe((res)=>{
-  
-})
 
+  deleteProd(id: number) {
+    // console.warn(id);
+    this.prodservice.deleteProduct(id).subscribe((res) => {
+      this.prodList.splice(id - 1, 1)
+    })
+  }
+
+  updateProd(id: number) {
+    // console.warn(id);
+    this.prodservice.getProduct(id).subscribe((resid) => {
+      console.warn(resid);
+
+    })
   }
 }
