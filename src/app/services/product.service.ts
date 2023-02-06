@@ -33,4 +33,11 @@ return this.http.put(`${this.prod_url}/${product.id}` ,product)
   popularProduct(){
     return this.http.get("http://localhost:3000/products?_limit=3")
   }
+
+  trendyPrducts(){
+    return this.http.get("http://localhost:3000/products?_limit=8")
+  }
+  searchProduct(query:any){
+    return this.http.get<prod[]>(`http://localhost:3000/products?q=${query}`)
+  }
 }

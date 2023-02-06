@@ -2,3 +2,21 @@
     height: auto;
     width: 180px;
 }
+.suggested-result{
+    position: absolute;
+    background: white;
+    list-style: none;
+    z-index: 10;
+}
+.suggested-result li a{
+    cursor: pointer;
+}
+
+.suggested-result li{
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+.suggested-result li:hover{
+    background-color: rgb(242, 242, 242);
+}
