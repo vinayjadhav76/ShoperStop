@@ -1,7 +1,6 @@
 <div id="carouselExampleCaptions" class="carousel slide" *ngIf="popularProducts" data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
@@ -25,6 +24,9 @@
 </div>
 
 <div class="container my-5">
+  <div class="trendy-heading text-center text-success text-underline my-5">
+    <h1><u>Trending Products</u></h1>
+  </div>
   <div class="product-list-wrapper">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 my-2" *ngFor="let trproduct of trendyProducts">
@@ -36,7 +38,7 @@
             <p class="card-text">{{trproduct.color}}</p>
           </div>
           <div class="card-footer d-flex justify-content-around">
-            <button routerLink="#" class="btn btn-primary">View Product</button>
+            <button routerLink="/details/{{trproduct.id}}" class="btn btn-primary">View Product</button>
             <button routerLink="#" class="btn btn-primary">Add To kart</button>
           </div>
         </div>

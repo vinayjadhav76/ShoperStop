@@ -1,14 +1,19 @@
 <div class="container mt-5">
     <div class="row pt-2 mt-2 border-top" *ngFor="let product of searchResult">
+
         <div class="col-md-3">
-            <img class="search-prod-img" src="{{product.image}}" alt="">
+            <a routerLink="/details/{{product.id}}">
+                <img class="search-prod-img" src="{{product.image}}" alt="">
+            </a>
         </div>
         <div class="col-md-9">
-            <h3 class="search-prod-det">{{product.name}}</h3>
-            <p class="search-prod-det">{{product.category}}</p>
-            <p class="search-prod-det mb-2">{{product.price}}</p>
-            <p class="search-prod-det mb-2">{{product.color}}</p>
-            <p class="search-prod-det mb-2">{{product.desc}}</p>
+            <a routerLink="/details/{{product.id}}">
+                <h3 class="search-prod-det">{{product.name}}</h3>
+                <p class="search-prod-det">{{product.category}}</p>
+                <p class="search-prod-det mb-2">{{product.price}}</p>
+                <p class="search-prod-det mb-2">{{product.color}}</p>
+                <p class="search-prod-det mb-2">{{product.desc}}</p>
+            </a>
         </div>
     </div>
 </div>

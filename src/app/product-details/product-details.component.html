@@ -1,0 +1,31 @@
+<div class="container mt-5" *ngIf="productData">
+    <div class="row">
+        <div class="col-sm-4" >
+            <img src="{{productData.image}}" alt="">
+        </div>
+        <div class="col-sm-8">
+            <div class="details">
+                <div>
+                    <h2>{{productData.name}}</h2>
+                </div>
+                <div>
+                    <h4>Price : {{productData.price}}</h4>
+                </div>
+                <div>
+                    <span>color</span>
+                    <p [style.backgroundColor]="productData.color" class="product-color"></p>
+                    <p><strong>Category</strong> : {{productData.category}}</p>
+                </div>
+                <div>
+                    <button class="btn btn-success mr-1">Buy Now</button>
+                    <button class="btn btn-success mx-1">Add To Kart</button>
+                </div>
+                <div class="my-3">
+                    <button class="btn btn-success">+</button>
+                    <input type="text"  value="1" style="width: 30px;">
+                    <button class="btn btn-success">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
