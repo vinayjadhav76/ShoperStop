@@ -60,7 +60,7 @@ this.route.navigate(['/details/'+id])
   }
 
   hideSearch() {
-    this.searchResult = undefined
+    this.searchResult = undefined 
   }
   submitSearch(val:string){
     // console.warn(val);
