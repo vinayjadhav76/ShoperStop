@@ -15,7 +15,7 @@ constructor( private activeRoute:ActivatedRoute , private prodservice:ProductSer
 
 ngOnInit(){
   let query = this.activeRoute.snapshot.paramMap.get('query')
-  console.warn(query);
+  // console.warn(query);
   query && this.prodservice.searchProduct(query).subscribe((result)=>{
 this.searchResult=result
   })

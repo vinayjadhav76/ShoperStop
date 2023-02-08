@@ -16,7 +16,7 @@
         <button class="btn btn-success mx-2" (click)="submitSearch(SearchInput.value)">Search</button>
         <ul class="suggested-result p-0" *ngIf="searchResult">
           <li class="px-4" *ngFor="let search of searchResult">
-            <a>{{search.name}}</a>
+            <a (mousedown)="redirectToDetails(search.id)">{{search.name}}</a>
           </li>
         </ul>
       </div>

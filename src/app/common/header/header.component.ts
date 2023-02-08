@@ -55,11 +55,17 @@ export class HeaderComponent implements OnInit {
       })
     }
   }
+  redirectToDetails(id:number){
+this.route.navigate(['/details/'+id])
+  }
+
   hideSearch() {
     this.searchResult = undefined
   }
   submitSearch(val:string){
     // console.warn(val);
     this.route.navigate([`search/${val}`])
+    
   }
+ 
 }

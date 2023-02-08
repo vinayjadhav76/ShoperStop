@@ -21,9 +21,9 @@
                     <button class="btn btn-success mx-1">Add To Kart</button>
                 </div>
                 <div class="my-3">
-                    <button class="btn btn-success">+</button>
-                    <input type="text"  value="1" style="width: 30px;">
-                    <button class="btn btn-success">-</button>
+                    <button class="btn btn-success" (click)="handleQuantity('plus')">+</button>
+                    <input type="text"  value="{{productQuantity}}" style="width: 30px;">
+                    <button class="btn btn-success" (click)="handleQuantity('min')">-</button>
                 </div>
             </div>
         </div>

@@ -10,16 +10,25 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductDetailsComponent {
   productData: undefined | prod | any;
+  productQuantity: number = 1
   constructor(private activeRoute: ActivatedRoute, private prodservice: ProductService) { }
 
   ngOnInit() {
     let productId = this.activeRoute.snapshot.paramMap.get('productId');
     console.warn(productId);
 
-    productId && this.prodservice.getProduct(productId).subscribe((result)=>{
+    productId && this.prodservice.getProduct(productId).subscribe((result) => {
       console.warn(result);
-      this.productData=result
+      this.productData = result
     })
-    
+
+  }
+
+  handleQuantity(val: string) {
+    if (this.productQuantity < 20 && val === "plus") {
+      this.productQuantity += 1;
+    } else if(this.productQuantity>1 && val==="min"){
+      this.productQuantity-=1
+    }
   }
 }

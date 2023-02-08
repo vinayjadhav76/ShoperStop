@@ -6,11 +6,12 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" *ngFor="let product of popularProducts">
-      <img src="{{product.image}}" class="carousel-image d-block w-100" alt="...">
+      <a routerLink="/details/{{product.id}}"><img src="{{product.image}}" class="carousel-image d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{product.name}}</h5>
         <p>{{product.desc}}</p>
       </div>
+    </a>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
