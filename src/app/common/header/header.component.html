@@ -5,15 +5,20 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-   <!-- <div class="d-flex justify-content-between"> -->
-   
+    <!-- <div class="d-flex justify-content-between"> -->
+
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent" [ngSwitch]="menuType">
       <div>
-        <a routerLink=""><img src="../../../assets/header-logo.png" class="header-Logo" alt=""></a>
+        <a routerLink="/"><img src="../../../assets/header-logo.png" class="header-Logo" alt=""></a>
       </div>
       <div *ngIf="menuType === 'default'" class="search">
-        <input type="text" class="p-0">
-        <button class="btn btn-success mx-2">Search</button>
+        <input type="text" class="p-0" #SearchInput (keyup)="searchProduct($event)" (blur)="hideSearch()">
+        <button class="btn btn-success mx-2" (click)="submitSearch(SearchInput.value)">Search</button>
+        <ul class="suggested-result p-0" *ngIf="searchResult">
+          <li class="px-4" *ngFor="let search of searchResult">
+            <a (mousedown)="redirectToDetails(search.id)">{{search.name}}</a>
+          </li>
+        </ul>
       </div>
       <ul class="navbar-nav  mb-2 mb-lg-0" *ngSwitchCase="'default'">
         <li class="nav-item">
@@ -44,7 +49,7 @@
         </li>
       </ul>
     </div>
-   </div>
-   
+  </div>
+
   <!-- </div> -->
 </nav>

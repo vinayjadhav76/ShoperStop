@@ -8,14 +8,18 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-popularProduct:undefined|prod[];
-  constructor( private prodsevice:ProductService ) { }
+  popularProducts: undefined | prod[];
+  trendyProducts: any  ;
+  constructor(private prodsevice: ProductService) { }
 
   ngOnInit(): void {
-this.prodsevice.popularProduct().subscribe((data:any)=>{
-  console.warn(data);
-  this.popularProduct = data;
-})
+    this.prodsevice.popularProduct().subscribe((data: any) => {
+      // console.warn(data);
+      this.popularProducts = data;
+    })
+    this.prodsevice.trendyPrducts().subscribe((data) => {
+      this.trendyProducts = data;
+    })
   }
 
 }
