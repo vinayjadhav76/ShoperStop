@@ -11,6 +11,7 @@
       <div>
         <a routerLink="/"><img src="../../../assets/header-logo.png" class="header-Logo" alt=""></a>
       </div>
+
       <div *ngIf="menuType === 'default'" class="search">
         <input type="text" class="p-0" #SearchInput (keyup)="searchProduct($event)" (blur)="hideSearch()">
         <button class="btn btn-success mx-2" (click)="submitSearch(SearchInput.value)">Search</button>
@@ -20,33 +21,18 @@
           </li>
         </ul>
       </div>
-      <ul class="navbar-nav  mb-2 mb-lg-0" *ngSwitchCase="'default'">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="seller-auth">Seller</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" routerLink="#">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" routerLink="#">Cart(0)</a>
-        </li>
+
+      <ul class="navbar-nav  mb-2 mb-lg-0" *ngSwitchCase="'default'"> 
+        <li class="nav-item"><a class="nav-link" routerLink="seller-auth">Seller</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="">Home</a></li>
+        <li class="nav-item"><a class="nav-link " routerLink="user-auth">Login/SignUp</a></li>
+        <li class="nav-item"><a class="nav-link " routerLink="#">Cart(0)</a></li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0" *ngSwitchCase="'seller'">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="seller-add-product">Add Product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="seller-auth">Product's List</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logOut()">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">{{sellerName | titlecase}}</a>
-        </li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="seller-add-product">Add Product</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="seller-auth">Product's List</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="logOut()">Logout</a></li>
+        <li class="nav-item"><a class="nav-link">{{sellerName | titlecase}}</a></li>
       </ul>
     </div>
   </div>

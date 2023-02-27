@@ -15,6 +15,8 @@ export class SellerAuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerAuth.reloadSeller()
+
+   
   }
 
   signUp(data: signUp) {
@@ -31,11 +33,20 @@ if(err){
 this.authError = "Email Or Password Is Incorrect"
 }
    })
+
+   setTimeout(() => {
+    localStorage.removeItem('seller')
+    console.warn("seller removed");
+    this.router.navigate([''])
+    
+  }, 30000);
   
   }
 
   showLogin() {
     this.toggleLogin = !this.toggleLogin
   }
+
+ 
 
 }
