@@ -159,18 +159,6 @@
       "email": "user1@gmail.com",
       "password": "1234",
       "id": 1
-    },
-    {
-      "name": "user2",
-      "email": "user2@gmail.com",
-      "password": "1234",
-      "id": 2
-    },
-    {
-      "name": "vinay",
-      "email": "vinay@gmail.com",
-      "password": "1234",
-      "id": 3
     }
   ]
 }
