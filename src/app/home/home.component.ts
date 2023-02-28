@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
     })
     this.prodsevice.trendyPrducts().subscribe((data) => {
       this.trendyProducts = data;
+      console.warn(data);
+      
     })
   }
 

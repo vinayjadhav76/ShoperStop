@@ -10,13 +10,11 @@ import { login, signUp } from '../data-type';
 })
 export class SellerAuthComponent implements OnInit {
   toggleLogin = false;
-  authError:string = '';
+  authError: string = '';
   constructor(private sellerAuth: SellerService, private router: Router) { }
 
   ngOnInit(): void {
     this.sellerAuth.reloadSeller()
-
-   
   }
 
   signUp(data: signUp) {
@@ -26,27 +24,24 @@ export class SellerAuthComponent implements OnInit {
 
   login(data: login) {
     // console.warn(data);
-    this.authError="";
-   this.sellerAuth.userLogin(data)
-   this.sellerAuth.isLoggingError.subscribe((err)=>{
-if(err){
-this.authError = "Email Or Password Is Incorrect"
-}
-   })
-
-   setTimeout(() => {
-    localStorage.removeItem('seller')
-    console.warn("seller removed");
-    this.router.navigate([''])
-    
-  }, 30000);
-  
+    this.authError = "";
+    this.sellerAuth.userLogin(data)
+    this.sellerAuth.isLoggingError.subscribe((err) => {
+      if (err) {
+        this.authError = "Email Or Password Is Incorrect"
+      }
+    })
+    setTimeout(() => {
+      localStorage.removeItem('seller')
+      console.warn("seller removed");
+      this.router.navigate([''])
+    }, 30000);
   }
 
   showLogin() {
     this.toggleLogin = !this.toggleLogin
   }
 
- 
+
 
 }

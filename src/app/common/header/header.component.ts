@@ -11,9 +11,10 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  menuType: string = "default"
+  menuType: string = "default";
   sellerName: string = '';
-  searchResult: undefined | prod[]
+  searchResult: undefined | prod[];
+  userName: string = '';
 
   constructor(private route: Router, private prodservice: ProductService) { }
 
@@ -26,10 +27,16 @@ export class HeaderComponent implements OnInit {
           let sellerData = sellerStore && JSON.parse(sellerStore)[0];
           this.sellerName = sellerData.name
           // console.warn(this.sellerName);
-
           // console.warn("in seller area");
           this.menuType = 'seller'
-        } else {
+        }
+        else if (localStorage.getItem('user')) {
+          let userStore = localStorage.getItem('user');
+          let userData = userStore && JSON.parse(userStore);
+          this.userName = userData.name
+          this.menuType = 'user'
+        }
+        else {
           // console.warn("outside seller area");
           this.menuType = 'default'
         }
@@ -41,6 +48,10 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('seller');
     this.route.navigate(['']);
   }
+  userLogout() {
+    localStorage.removeItem('user')
+    this.route.navigate(['/user-auth'])
+  }
 
   searchProduct(data: KeyboardEvent) {
     if (data) {
@@ -48,24 +59,25 @@ export class HeaderComponent implements OnInit {
       // console.warn(element.value);
       this.prodservice.searchProduct(element.value).subscribe((data) => {
         // console.warn(data);
-        if(data.length > 5){
+        if (data.length > 5) {
           data.length = 5
         }
         this.searchResult = data;
       })
     }
   }
-  redirectToDetails(id:number){
-this.route.navigate(['/details/'+id])
+  redirectToDetails(id: number) {
+    this.route.navigate(['/details/' + id])
   }
 
   hideSearch() {
-    this.searchResult = undefined 
+    this.searchResult = undefined
   }
-  submitSearch(val:string){
+  submitSearch(val: string) {
     // console.warn(val);
     this.route.navigate([`search/${val}`])
-    
+
   }
- 
+  
+
 }

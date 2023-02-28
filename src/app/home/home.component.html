@@ -6,7 +6,7 @@
     </div>
     <div class="carousel-inner" *ngIf="popularProducts">
       <div class="carousel-item active" *ngFor="let item of popularProducts">
-        <img src={{item.image}} class="carousel-image d-block w-100" alt="...">
+        <a routerLink="details/{{item.id}}"><img src={{item.image}} class="carousel-image d-block w-100" alt="..."></a>
         <div class="carousel-caption d-none d-md-block">
           <h5>{{item.name}}</h5>
           <p>{{item.desc}}</p>
@@ -21,4 +21,25 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div>
+
+  <div class="container my-5">
+    <div class="product-list-wrapper">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 my-2" *ngFor="let trproduct of trendyProducts">
+          <div class="card" >
+            <img class="card-img-top" src="{{trproduct.image}}" alt="Card image cap">
+            <div class="card-body d-flex flex-column align-items-center">
+              <h5 class="card-title">{{trproduct.name}}</h5>
+              <p class="card-text mb-0">{{trproduct.price}}</p>
+              <p class="card-text">{{trproduct.color}}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-around">
+              <button routerLink="details/{{trproduct.id}}" class="btn btn-primary">View Product</button>
+              <button routerLink="" class="btn btn-primary">Add To kart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>

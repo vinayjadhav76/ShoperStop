@@ -1,5 +1,5 @@
 <div class="container d-flex justify-content-center">
-    <div class="card shadow col-4 p-4 m-4 sellercard">
+    <div *ngIf="!showLogin" class="card shadow col-4 p-4 m-4 sellercard">
         <h1 class="sellersiguptitle text-center">User Sign-up</h1>
         <form #usersignup="ngForm" (ngSubmit)="signUp(usersignup.value)">
             <div class="form-group">
@@ -13,6 +13,26 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success">SignUp</button>
+            </div>
+            <div class="text-center mt-3">
+                <a (click)="openLogin()">Already have an Account ! Click Here</a>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="showLogin"  class="card shadow col-4 p-4 m-4 sellercard">
+        <h1 class="sellersiguptitle text-center">User Login</h1>
+        <form #userlogin="ngForm" (ngSubmit)="login(userlogin.value)">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter User Email" ngModel name="email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Enter User Password" ngModel name="password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+            <div class="text-center mt-3">
+                <a (click)="openSignUp()">Don't have an Account ! Click Here</a>
             </div>
         </form>
     </div>
