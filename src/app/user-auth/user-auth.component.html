@@ -22,15 +22,19 @@
     <div *ngIf="showLogin"  class="card shadow col-4 p-4 m-4 sellercard">
         <h1 class="sellersiguptitle text-center">User Login</h1>
         <form #userlogin="ngForm" (ngSubmit)="login(userlogin.value)">
+            <p class="text-danger text-center">{{authErr}}</p>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter User Email" ngModel name="email">
+                <input type="text" class="form-control" placeholder="Enter User Email" ngModel name="email" #email="ngModel" email required>
+                <p class="text-danger px-2" *ngIf="email.invalid && email.touched"> Enter Valid Email</p>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Enter User Password" ngModel name="password">
+                <input type="password" class="form-control" placeholder="Enter User Password" ngModel name="password" #password="ngModel" minlength="2" maxlength="8" required>
+                <p class="text-danger px-2" *ngIf="password.invalid && password.touched">Enter valid Password</p>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Login</button>
+                <button type="submit" class="btn btn-success" [disabled]="userlogin.invalid">Login</button>
             </div>
+
             <div class="text-center mt-3">
                 <a (click)="openSignUp()">Don't have an Account ! Click Here</a>
             </div>

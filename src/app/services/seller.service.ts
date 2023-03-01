@@ -41,13 +41,18 @@ export class SellerService {
     this._http.get(`http://localhost:3000/seller?email=${data.email}&password=${data.password}`, { observe: 'response' }).subscribe((result: any) => {
       console.warn(result);
       if (result && result.body && result.body.length) {
-        console.warn("Login Successful");
+        alert("Login Successful");
         localStorage.setItem('seller', JSON.stringify(result.body));
         this.router.navigate(['seller-home']);
+        setTimeout(() => {
+          localStorage.removeItem('seller')
+          console.warn("seller removed");
+          this.router.navigate([''])
+        }, 300000);
       } else {
-        console.warn("Login failed");
+        alert("Login failed");
         this.isLoggingError.emit(true);
-      } 
+      }
     })
   }
 }

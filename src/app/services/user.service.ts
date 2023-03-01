@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventEmitter }  from '@angular/core';
+import { emit } from 'process';
 import { login, signUp } from '../data-type';
 
 @Injectable({
@@ -8,6 +10,8 @@ import { login, signUp } from '../data-type';
 })
 export class UserService {
   user_url = "http://localhost:3000/users";
+  invalidUserAuth = new EventEmitter<boolean>(true)
+
   constructor(private http: HttpClient, private router: Router) { }
 
   user_Signup(user: signUp) {
@@ -25,14 +29,19 @@ export class UserService {
       this.router.navigate(['/'])
   }
 
-  userLogin(data:login){
-this.http.get<signUp[]>(`http://localhost:3000/users?email=${data.email}&password=${data.password}`,{ observe :'response' })
-.subscribe((res)=>{
-  if(res && res.body){
-    console.warn(res);
-    localStorage.setItem('user' , JSON.stringify(res.body[0]))
-    this.router.navigate(['/'])
-  }
-})
+  userLogin(data: login) {
+    this.http.get<signUp[]>(`http://localhost:3000/users?email=${data.email}&password=${data.password}`, { observe: 'response' })
+      .subscribe((res: any) => {
+        if (res && res.body && res.body.length) {
+          this.invalidUserAuth.emit(false)
+          alert("login Successful")
+          console.warn(res);
+          localStorage.setItem('user', JSON.stringify(res.body[0]))
+          this.router.navigate(['/'])
+        } else {
+          this.invalidUserAuth.emit(true)
+          alert("Login Failed")
+        }
+      })
   }
 }

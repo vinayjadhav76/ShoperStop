@@ -31,11 +31,7 @@ export class SellerAuthComponent implements OnInit {
         this.authError = "Email Or Password Is Incorrect"
       }
     })
-    setTimeout(() => {
-      localStorage.removeItem('seller')
-      console.warn("seller removed");
-      this.router.navigate([''])
-    }, 30000);
+    
   }
 
   showLogin() {
