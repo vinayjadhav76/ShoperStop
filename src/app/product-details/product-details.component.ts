@@ -16,19 +16,27 @@ export class ProductDetailsComponent {
   ngOnInit() {
     let productId = this.activeRoute.snapshot.paramMap.get('productId');
     console.warn(productId);
-
     productId && this.prodservice.getProduct(productId).subscribe((result) => {
       console.warn(result);
-      this.productData = result
+      this.productData = result;
     })
-
   }
 
   handleQuantity(val: string) {
     if (this.productQuantity < 20 && val === "plus") {
       this.productQuantity += 1;
-    } else if(this.productQuantity>1 && val==="min"){
-      this.productQuantity-=1
+    } else if (this.productQuantity > 1 && val === "min") {
+      this.productQuantity -= 1
+    }
+  }
+
+  addToCart() {
+    if (this.productData) {
+      this.productData.quantity = this.productQuantity
+      if (!localStorage.getItem('user')) {
+        console.warn(this.productData);
+        this.prodservice.localAddToCart(this.productData)
+      }
     }
   }
 }

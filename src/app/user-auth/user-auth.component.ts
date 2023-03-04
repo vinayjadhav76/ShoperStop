@@ -10,7 +10,8 @@ import { UserService } from '../services/user.service';
 })
 export class UserAuthComponent {
   showLogin: boolean = true;
-  authErr:string='';
+  authErr: string = '';
+
   constructor(private userService: UserService) { }
   ngOnInit() {
     this.userService.userAuthReload();
@@ -23,17 +24,17 @@ export class UserAuthComponent {
   login(data: any) {
     // console.warn(data);
     this.userService.userLogin(data);
-    this.userService.invalidUserAuth.subscribe((result)=>{
-console.warn("apple",result);
-if(result){
-this.authErr = "Please enter valid data"
-}
+    this.userService.invalidUserAuth.subscribe((result) => {
+      // console.warn("apple", result);
+      if (result) {
+        this.authErr = "Please enter valid data";
+      }
     })
   }
   openSignUp() {
-    this.showLogin = false
+    this.showLogin = false;
   }
   openLogin() {
-    this.showLogin = true
+    this.showLogin = true;
   }
 }

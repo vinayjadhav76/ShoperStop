@@ -14,6 +14,7 @@ export interface prod{
     category:string;
     color:string;
     desc:string;
-    image:string
-    id:number
+    image:string;
+    id:number;
+    quantity:undefined | number
 }

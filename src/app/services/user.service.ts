@@ -35,7 +35,7 @@ export class UserService {
         if (res && res.body && res.body.length) {
           this.invalidUserAuth.emit(false)
           alert("login Successful")
-          console.warn(res);
+          // console.warn(res);
           localStorage.setItem('user', JSON.stringify(res.body[0]))
           this.router.navigate(['/'])
         } else {
