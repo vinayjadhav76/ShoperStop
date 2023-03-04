@@ -54,7 +54,6 @@ return this.http.put(`${this.prod_url}/${product.id}` ,product)
       cartData.push(data)
       localStorage.setItem('localCart', JSON.stringify(cartData))
     }
-
     this.cartData.emit(cartData)
   }
 }

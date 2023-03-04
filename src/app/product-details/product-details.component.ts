@@ -32,10 +32,10 @@ export class ProductDetailsComponent {
 
   addToCart() {
     if (this.productData) {
-      this.productData.quantity = this.productQuantity
+      this.productData.quantity = this.productQuantity;
       if (!localStorage.getItem('user')) {
         console.warn(this.productData);
-        this.prodservice.localAddToCart(this.productData)
+        this.prodservice.localAddToCart(this.productData);
       }
     }
   }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BlobOptions } from 'buffer';
 import { signUp } from '../data-type';
 import { UserService } from '../services/user.service';
 
