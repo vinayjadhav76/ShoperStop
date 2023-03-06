@@ -10,7 +10,9 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductDetailsComponent {
   productData: undefined | prod | any;
-  productQuantity: number = 1
+  productQuantity: number = 1;
+  removeCart = false;
+
   constructor(private activeRoute: ActivatedRoute, private prodservice: ProductService) { }
 
   ngOnInit() {
@@ -20,6 +22,16 @@ export class ProductDetailsComponent {
       console.warn(result);
       this.productData = result;
     })
+    let cartData = localStorage.getItem('localCart')
+    if (productId && cartData) {
+      let items = JSON.parse(cartData)
+      items = items.filter((item: prod) => productId == item.id.toString())
+      if (items.length) {
+        this.removeCart = true;
+      } else {
+        this.removeCart = false;
+      }
+    }
   }
 
   handleQuantity(val: string) {
@@ -34,9 +46,15 @@ export class ProductDetailsComponent {
     if (this.productData) {
       this.productData.quantity = this.productQuantity;
       if (!localStorage.getItem('user')) {
-        console.warn(this.productData);
+        // console.warn(this.productData);
         this.prodservice.localAddToCart(this.productData);
+        this.removeCart = true
       }
     }
+  }
+
+  removeToCart(productId: number) {
+    this.prodservice.removeItemFromCart(productId)
+    this.removeCart = false
   }
 }
