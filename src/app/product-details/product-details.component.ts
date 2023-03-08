@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { prod } from '../data-type';
+import { cart, prod } from '../data-type';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProductDetailsComponent {
 
   ngOnInit() {
     let productId = this.activeRoute.snapshot.paramMap.get('productId');
-    console.warn(productId);
+    // console.warn(productId);
     productId && this.prodservice.getProduct(productId).subscribe((result) => {
       console.warn(result);
       this.productData = result;
@@ -26,6 +26,8 @@ export class ProductDetailsComponent {
     if (productId && cartData) {
       let items = JSON.parse(cartData)
       items = items.filter((item: prod) => productId == item.id.toString())
+      console.warn("items", items);
+
       if (items.length) {
         this.removeCart = true;
       } else {
@@ -49,6 +51,24 @@ export class ProductDetailsComponent {
         // console.warn(this.productData);
         this.prodservice.localAddToCart(this.productData);
         this.removeCart = true
+      } else {
+        // console.warn("user is logged in");
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user).id;
+        // console.warn("userID",userId);
+        let cartData: cart = {
+          ...this.productData,
+          userId,
+          productId: this.productData.id
+        }
+        delete cartData.id;
+        // console.warn(cartData);
+        this.prodservice.addToCart(cartData).subscribe((result)=>{
+          if(result){
+            alert("Product added in Cart")
+          }
+        })
+
       }
     }
   }
