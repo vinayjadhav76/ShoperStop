@@ -34,7 +34,8 @@ export class HeaderComponent implements OnInit {
           let userStore = localStorage.getItem('user');
           let userData = userStore && JSON.parse(userStore);
           this.userName = userData.name
-          this.menuType = 'user'
+          this.menuType = 'user';
+          this.prodservice.getCartList(userData.id)
         }
         else {
           // console.warn("outside seller area");
@@ -58,6 +59,7 @@ export class HeaderComponent implements OnInit {
   userLogout() {
     localStorage.removeItem('user')
     this.route.navigate(['/user-auth'])
+    this.prodservice.cartData.emit([]);
   }
 
   searchProduct(data: KeyboardEvent) {

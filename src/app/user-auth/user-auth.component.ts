@@ -42,11 +42,12 @@ export class UserAuthComponent {
 
   localcartToRemoveCart() {
     let data = localStorage.getItem('localCart')
+    let user = localStorage.getItem('user');
+    let userId = user && JSON.parse(user).id;
     if (data) {
       let cartDataList: prod[] = JSON.parse(data);
-      let user = localStorage.getItem('user');
-      let userId = user && JSON.parse(user).id;
-      cartDataList.forEach((product: prod,index) => {
+
+      cartDataList.forEach((product: prod, index) => {
         let cartData: cart = {
           ...product,
           productId: product.id,
@@ -60,11 +61,16 @@ export class UserAuthComponent {
               console.warn("item stored in DB");
             }
           })
-          if(cartDataList.length===index+1){
+          if (cartDataList.length === index + 1) {
             localStorage.removeItem('localCart')
           }
         }, 500);
       });
     }
+    setTimeout(() => {
+      this.prodservice.getCartList(userId)
+    }, 2000);
+
+
   }
 }
