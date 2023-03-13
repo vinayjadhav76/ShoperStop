@@ -92,6 +92,7 @@ export class ProductDetailsComponent {
   removeToCart(productId: number) {
     if (!localStorage.getItem('user')) {
       this.prodservice.removeItemFromCart(productId);
+      this.removeCart = false;
       
     } else {
       let user = localStorage.getItem('user');
@@ -101,9 +102,10 @@ export class ProductDetailsComponent {
         .subscribe((result) => {
           if (result) {
             this.prodservice.getCartList(userId);
+            this.removeCart = false;
           }
         })
-        this.removeCart = false;
+        // this.removeCart = false;
     }
 
   }
