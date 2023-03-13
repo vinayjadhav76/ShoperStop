@@ -31,3 +31,17 @@ export interface cart{
     userId:number;
     productId:number;
 }
+export interface pricesummery{
+    price:number;
+    discount:number;
+    tax:number;
+    delivery:number;
+    total:number;
+}
+export interface order{
+    email:string,
+    address:string,
+    contact:string,
+    totalPrice:number,
+    userId:number
+}

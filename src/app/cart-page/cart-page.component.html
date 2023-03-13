@@ -1,1 +1,33 @@
-<p>cart-page works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="product-list">
+                <div class="product">
+                    <ul class="d-flex justify-content-between" *ngFor="let item of cartData">
+                        <li>
+                            <img src="{{item.image}}" alt="">
+                        </li>
+                        <li>{{item.name}}</li>
+                        <li>Price : {{item.price}}</li>
+                        <li>Quantity : {{item.quantity}}</li>
+                        <li>
+                            <button class="btn btn-success">Remove</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="summery">
+                <ul>
+                    <li><span>Amount :</span><span>{{priceSummery.price}}</span></li>
+                    <li><span>Tax :</span><span>{{priceSummery.tax}}</span></li>
+                    <li><span>Delivery :</span><span>{{priceSummery.delivery}}</span></li>
+                    <li><span>Discount :</span><span>{{priceSummery.discount}}</span></li>
+                    <li><span><h4>Total</h4></span><span><h4>{{priceSummery.total}}</h4></span></li>
+                    <div class="text-center"><button class="btn btn-success" (click)="checkOut()" >Checkout</button></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
