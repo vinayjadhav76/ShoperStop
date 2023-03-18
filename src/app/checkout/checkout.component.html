@@ -4,6 +4,7 @@
     </div>    
     <div class="row">
         <div class="col-sm-7 ">
+            <p class="text-center text-success">{{orderMsg}}</p>
             <form #orderData="ngForm" (ngSubmit)="orderNow(orderData.value)">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter Email" name="email" ngModel>

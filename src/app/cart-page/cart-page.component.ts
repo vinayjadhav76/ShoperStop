@@ -35,7 +35,7 @@ export class CartPageComponent implements OnInit {
       this.priceSummery.tax = price / 10;
       this.priceSummery.delivery = 100;
       this.priceSummery.total = price + (price / 10) + 100 - (price / 10)
-      console.warn(this.priceSummery);
+      // console.warn(this.priceSummery);
     })
   }
 

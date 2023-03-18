@@ -33,6 +33,7 @@
         <li class="nav-item"><a class="nav-link active" aria-current="page" routerLink="">Home</a></li>
         <li class="nav-item"><a class="nav-link "  (click)="userLogout()" routerLink="user-auth">Logout</a></li>
         <li class="nav-item"><a class="nav-link " routerLink="/cart-page">Cart({{cartItems}})</a></li>
+        <li class="nav-item"><a class="nav-link " routerLink="my-orders">My Orders</a></li>
         <li class="nav-item"><a class="nav-link ">{{userName | titlecase}}</a></li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0" *ngSwitchCase="'seller'">

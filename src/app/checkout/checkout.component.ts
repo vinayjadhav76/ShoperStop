@@ -11,6 +11,8 @@ import { ProductService } from '../services/product.service';
 export class CheckoutComponent {
   totalPrice: number | undefined;
   cartData: cart[] | undefined;
+  orderMsg: string | undefined;
+
   constructor(private prodservice: ProductService, private router: Router) { }
 
   ngOnInit() {
@@ -39,14 +41,21 @@ export class CheckoutComponent {
         userId,
         id: undefined
       }
-      this.cartData?.forEach((item)=>{ 
-        // this.prodservice.deleteCartItems(item.id)
+      this.cartData?.forEach((item) => {
+        setTimeout(() => {
+          item.id && this.prodservice.deleteCartItems(item.id);  
+        }, 700);        
       })
       this.prodservice.orderNow(orderData).subscribe((result) => {
         if (result) {
-          alert("Order Placed")
-          console.warn(result);
-          this.router.navigate(['/my-orders'])
+          this.orderMsg = "Order has been placed"
+          setTimeout(() => {
+            this.router.navigate(['/my-orders'])
+            this.orderMsg = undefined
+          }, 4000);
+          // alert("Order Placed")
+          // console.warn(result);
+          
         }
       })
     }

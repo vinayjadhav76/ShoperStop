@@ -21,7 +21,7 @@
             <img class="cart-img" src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=" alt="">
         </div>
         <div class="col-sm-2">
-            <span>{{order.id}}</span>
+            <span>#SCS00{{order.id}}</span>
         </div>
         <div class="col-sm-2">
             <span>{{order.totalPrice}}</span>
@@ -30,7 +30,7 @@
             <span>In process</span>
         </div>
         <div class="col-sm-2">
-            <span><button class="btn btn-danger">Cancel Order</button></span>
+            <span><button class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel Order</button></span>
         </div>        
     </div>
    

@@ -7,13 +7,23 @@ import { ProductService } from '../services/product.service';
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss']
 })
-export class MyOrdersComponent implements OnInit{
-  orderData:order[] | undefined;
-constructor( private prodservice:ProductService ){}
+export class MyOrdersComponent implements OnInit {
+  orderData: order[] | undefined;
+  constructor(private prodservice: ProductService) { }
 
-ngOnInit(){
-this.prodservice.orderList().subscribe((result)=>{
-this.orderData = result;
-})
-}
+  ngOnInit() {
+    this.getOrderList();
+  }
+
+  cancelOrder(orderId: number | undefined) {
+    orderId && this.prodservice.cancelOrder(orderId).subscribe((result) => {
+      this.getOrderList();
+    })
+  }
+
+  getOrderList() {
+    this.prodservice.orderList().subscribe((result) => {
+      this.orderData = result;
+    })
+  }
 }
